@@ -8,12 +8,12 @@ from matplotlib.patches import Rectangle
 from matplotlib.collections import PatchCollection
 import core.layer
 
-print(["P", len(patches), len(colors)])
+def new():
+    patches = []
+    colors = []
+    plt.tight_layout()
+    plt.axis('equal')
+    #plt.ylim([0,80])
 
-plt.tight_layout()
-plt.axis('equal')
-#plt.ylim([0,80])
-
-plt.axis('off')
-plt.show()
-es=0)
+    plt.axis('off')
+    plt.show()
