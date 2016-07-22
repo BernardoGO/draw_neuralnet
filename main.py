@@ -9,6 +9,19 @@ from matplotlib.collections import PatchCollection
 import core.layer
 
 def generate():
+    patches = []
+    colors = []
+
+    fig, ax = plt.subplots()
+    from keras_layers import Conv2D
+    from keras_model import Sequencial
+    import core.layer
+    model = Sequencial()
+    model.add(Conv2D(32, (1, 1), input_shape=(500,500,3), trainable=False))
+    model.add(Conv2D(2, (3, 3), trainable=False))
+    model.add(Conv2D(4, (3, 3), trainable=False))
+
+    #-------------------------------------------------------------------------------
     colors += [0, 1]
     print(["P", len(patches), len(colors)])
     #print(patches)
