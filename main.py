@@ -21,6 +21,13 @@ def generate():
     model.add(Conv2D(2, (3, 3), trainable=False))
     model.add(Conv2D(4, (3, 3), trainable=False))
 
+    for ind in range(len(model.layers)):
+
+        core.layer.add_layer(patches, colors, size=model.layers[ind].getSize(),
+                  num=model.layers[ind].getFilters(),
+                  position = model.layers[ind].position
+                  )
+
     #-------------------------------------------------------------------------------
     colors += [0, 1]
     print(["P", len(patches), len(colors)])
@@ -40,3 +47,5 @@ def generate():
     fig_ext = '.png'
     fig.savefig(os.path.join(fig_dir, 'figure' + fig_ext),
                 bbox_inches='tight', pad_inches=0)
+
+generate()
