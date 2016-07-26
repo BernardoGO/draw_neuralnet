@@ -27,7 +27,9 @@ def generate():
                   num=model.layers[ind].getFilters(),
                   position = model.layers[ind].position
                   )
-
+        core.layer.label(ind, text_list[ind]+ '\n{}@{}x{}'.format(
+            model.layers[ind].getFilters(),  model.layers[ind].input_shape[0], model.layers[ind].input_shape[1]), plt, top=True)
+            
     #-------------------------------------------------------------------------------
     colors += [0, 1]
     print(["P", len(patches), len(colors)])
