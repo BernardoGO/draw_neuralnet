@@ -29,7 +29,15 @@ def generate():
                   )
         core.layer.label(ind, text_list[ind]+ '\n{}@{}x{}'.format(
             model.layers[ind].getFilters(),  model.layers[ind].input_shape[0], model.layers[ind].input_shape[1]), plt, top=True)
-            
+
+
+    ##Links between layers
+    for ind in range(len(core.layer.layers)-1):
+        #print([len(core.layer.positions), ind])
+        core.layer.add_mapping(patches, colors, start_ratio_list[ind],
+                    patch_size_list[ind], ind, ax
+                    )
+                    
     #-------------------------------------------------------------------------------
     colors += [0, 1]
     print(["P", len(patches), len(colors)])
