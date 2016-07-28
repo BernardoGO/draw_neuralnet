@@ -37,7 +37,8 @@ def generate():
         core.layer.add_mapping(patches, colors, start_ratio_list[ind],
                     patch_size_list[ind], ind, ax
                     )
-                    
+        core.layer.label(ind, text_list[ind]+ '\n{}x{} kernel'.format(
+            model.layers[ind].getSize(), model.layers[ind].getSize()), plt, top=False                    
     #-------------------------------------------------------------------------------
     colors += [0, 1]
     print(["P", len(patches), len(colors)])
