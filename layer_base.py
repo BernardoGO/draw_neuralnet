@@ -6,6 +6,13 @@ import keras_layers
 import sys
 
 
+layer_width = 40
+layer_margin = 10
+
+positions = 0
+
+layers = []
+
 class layer():
     def __init__(self,visible_top, visible_bottom,visible_left,visible_right,size_x,size_y):
         self.visible_top = visible_top
