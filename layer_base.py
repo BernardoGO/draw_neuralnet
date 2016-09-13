@@ -27,3 +27,26 @@ class layer():
 
 def get_effective_area():
     return layer_width - layer_margin
+
+def add_layer(patches, colors, size=24, num=5,
+              position = 0
+              ):
+
+    size = (size/keras_layers.max_kernel_size_x)*get_effective_area()
+    xue = [size/15,-1*size/15]
+
+
+    top_left = [position*layer_width, position]
+
+    top_left = np.array(top_left)
+    xue = np.array(xue)
+    tp = np.array([0, size])
+    loc_start = top_left - tp
+
+    post = loc_start + num * xue
+
+    left = post[0]
+    bottom = post[1]
+    top = bottom+size
+    right = left + size
+    objlay = layer(top, bottom, left, right,size,size)
