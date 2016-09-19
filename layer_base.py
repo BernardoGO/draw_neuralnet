@@ -50,3 +50,15 @@ def add_layer(patches, colors, size=24, num=5,
     top = bottom+size
     right = left + size
     objlay = layer(top, bottom, left, right,size,size)
+
+    for ind in range(num):
+        pos = loc_start + ind * xue
+        patches.append(Rectangle(pos, size, size))
+        if ind % 2:
+            colors.append(Medium)
+        else:
+            colors.append(Light)
+        if pos[0] < objlay.actual_left:
+            objlay.actual_left = pos[0]
+        if pos[1] > objlay.actual_bottom:
+            objlay.actual_bottom = pos[1]
