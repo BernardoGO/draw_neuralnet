@@ -65,3 +65,24 @@ def add_layer(patches, colors, size=24, num=5,
     objlay.actual_top = objlay.actual_bottom+size
 
     layers.append(objlay)
+
+def add_mapping(patches, colors, start_ratio, patch_size, index, ax):
+
+    start_loc = [layers[index].visible_left+ (layers[index].size_x*start_ratio[0]),layers[index].visible_bottom + (layers[index].size_y*start_ratio[1])]
+
+    end_loc = [layers[index+1].visible_left+ (layers[index+1].size_x*start_ratio[0]),layers[index+1].visible_bottom + (layers[index+1].size_y*start_ratio[1])]
+
+    print(["S",start_loc])
+    print(["E",end_loc])
+
+    patches.append(Rectangle(start_loc, patch_size, patch_size))
+    colors.append(Dark)
+
+    ax.add_line(Line2D([start_loc[0], end_loc[0]],
+                          [start_loc[1], end_loc[1]*0.3]))
+    ax.add_line(Line2D([start_loc[0] + patch_size, end_loc[0]],
+                          [start_loc[1], end_loc[1]*0.3]))
+    ax.add_line(Line2D([start_loc[0], end_loc[0]],
+                          [start_loc[1] + patch_size, end_loc[1]*0.3]))
+    ax.add_line(Line2D([start_loc[0] + patch_size, end_loc[0]],
+                          [start_loc[1] + patch_size, end_loc[1]*0.3]))
