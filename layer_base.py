@@ -86,3 +86,14 @@ def add_mapping(patches, colors, start_ratio, patch_size, index, ax):
                           [start_loc[1] + patch_size, end_loc[1]*0.3]))
     ax.add_line(Line2D([start_loc[0] + patch_size, end_loc[0]],
                           [start_loc[1] + patch_size, end_loc[1]*0.3]))
+
+
+
+def label(index, text, plt, top= False, xy_off=[0, 4]):
+    xy_off=[0, 4]
+    print("xy", xy_off)
+    visible_y = 0
+
+
+    plt.text(pos_x, pos_y, text,
+             family='sans-serif', size=8)
