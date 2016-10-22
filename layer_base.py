@@ -93,7 +93,12 @@ def label(index, text, plt, top= False, xy_off=[0, 4]):
     xy_off=[0, 4]
     print("xy", xy_off)
     visible_y = 0
-
+    if top == False:
+        pos_y = layers[index].visible_bottom - xy_off[1]
+        pos_x = layers[index].visible_left + xy_off[0]+ ((layers[index+1].visible_left - layers[index].visible_left) //2)
+    else:
+        pos_y = layers[index].actual_top + xy_off[1]
+        pos_x = layers[index].actual_left + xy_off[0]
 
     plt.text(pos_x, pos_y, text,
              family='sans-serif', size=8)
