@@ -24,6 +24,8 @@ class layer():
         self.actual_bottom = float('-inf')
         self.size_x = size_x
         self.size_y = size_y
+        self.mappingText = ""
+        self.titleText = ""
 
 def get_effective_area():
     return layer_width - layer_margin
