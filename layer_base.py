@@ -65,7 +65,8 @@ def add_layer(patches, colors, size=24, num=5,
         if pos[1] > objlay.actual_bottom:
             objlay.actual_bottom = pos[1]
     objlay.actual_top = objlay.actual_bottom+size
-
+    objlay.mappingText = keras_layers.mappingText
+    objlay.titleText = keras_layers.titleText
     layers.append(objlay)
 
 def add_mapping(patches, colors, start_ratio, patch_size, index, ax):
