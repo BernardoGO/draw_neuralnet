@@ -90,20 +90,7 @@ def add_mapping(patches, colors, start_ratio, patch_size, index, ax):
 
     patches.append(Rectangle(start_loc, patch_size, patch_size))
     colors.append(Dark)
-    """
-    patches.append(Line2D([start_loc[0], end_loc[0]],
-                          [start_loc[1], end_loc[1]],linewidth=5))
-    colors.append(Black)
-    patches.append(Line2D([start_loc[0] + patch_size, end_loc[0]],
-                          [start_loc[1], end_loc[1]]))
-    colors.append(Black)
-    patches.append(Line2D([start_loc[0], end_loc[0]],
-                          [start_loc[1] + patch_size, end_loc[1]]))
-    colors.append(Black)
-    patches.append(Line2D([start_loc[0] + patch_size, end_loc[0]],
-                          [start_loc[1] + patch_size, end_loc[1]]))
-    colors.append(Black)
-    """
+
     ax.add_line(Line2D([start_loc[0], end_loc[0]],
                           [start_loc[1], end_loc[1]*0.3]))
     ax.add_line(Line2D([start_loc[0] + patch_size, end_loc[0]],
