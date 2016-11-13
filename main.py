@@ -8,11 +8,7 @@ from matplotlib.patches import Rectangle
 from matplotlib.collections import PatchCollection
 import core.layer
 
-White = 1.
-Light = 0.7
-Medium = 0.5
-Dark = 0.3
-Black = 0.
+
 
 
 def new():
@@ -27,7 +23,7 @@ def new():
     model.add(Conv2D(32, (1, 1), input_shape=(500,500,3), trainable=False))
     model.add(Conv2D(2, (3, 3), trainable=False))
     model.add(Conv2D(4, (3, 3), trainable=False))
-    text_list = ['Inputs'] + ['Feature\nmaps'] * (len(model.layers) - 1)
+
     for ind in range(len(model.layers)):
 
         core.layer.add_layer(patches, colors, size=model.layers[ind].getSize(),

@@ -4,12 +4,7 @@ from matplotlib.patches import Rectangle
 from matplotlib.collections import PatchCollection
 import keras_layers
 import sys
-
-White = 1.
-Light = 0.7
-Medium = 0.5
-Dark = 0.3
-Black = 0.
+import core.colors
 
 layer_width = 40
 layer_margin = 10
@@ -63,9 +58,9 @@ def add_layer(patches, colors, size=24, num=5,
         pos = loc_start + ind * loc_diff
         patches.append(Rectangle(pos, size, size))
         if ind % 2:
-            colors.append(Medium)
+            colors.append(core.colors.Medium)
         else:
-            colors.append(Light)
+            colors.append(core.colors.Light)
         if pos[0] < objlay.actual_left:
             objlay.actual_left = pos[0]
         if pos[1] > objlay.actual_bottom:
@@ -89,7 +84,7 @@ def add_mapping(patches, colors, start_ratio, patch_size, index, ax):
     print(["E",end_loc])
 
     patches.append(Rectangle(start_loc, patch_size, patch_size))
-    colors.append(Dark)
+    colors.append(core.colors.Dark)
 
     ax.add_line(Line2D([start_loc[0], end_loc[0]],
                           [start_loc[1], end_loc[1]*0.3]))
