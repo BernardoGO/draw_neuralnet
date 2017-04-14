@@ -47,6 +47,8 @@ class Conv2D():
         self.activity_regularizer = activity_regularizer
         self.kernel_constraint = kernel_constraint
         self.bias_constraint = bias_constraint
+        self.titleText = "Feature\nmaps"
+        self.mappingText = "2D Convolution"
 
     def getOutputShape(self):
         return (self.input_shape[0]-2,self.input_shape[1]-2,self.input_shape[2]-2)
