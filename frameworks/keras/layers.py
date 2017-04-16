@@ -2,7 +2,7 @@ max_kernel_size_x = 0
 max_kernel_size_y = 0
 max_filters = 0
 
-import keras_layers
+import frameworks.keras.layers
 
 class Conv2D():
     def __init__(self, filters,
@@ -23,14 +23,14 @@ class Conv2D():
                 kernel_constraint=None,
                 bias_constraint=None):
         self.filters = filters
-        if filters > keras_layers.max_filters:
-            keras_layers.max_filters = filters
+        if filters > frameworks.keras.layers.max_filters:
+            frameworks.keras.layers.max_filters = filters
 
         self.kernel_size = kernel_size
-        if kernel_size[0] > keras_layers.max_kernel_size_x:
-            keras_layers.max_kernel_size_x = kernel_size[0]
-        if kernel_size[1] > keras_layers.max_kernel_size_y:
-            keras_layers.max_kernel_size_y = kernel_size[1]
+        if kernel_size[0] > frameworks.keras.layers.max_kernel_size_x:
+            frameworks.keras.layers.max_kernel_size_x = kernel_size[0]
+        if kernel_size[1] > frameworks.keras.layers.max_kernel_size_y:
+            frameworks.keras.layers.max_kernel_size_y = kernel_size[1]
 
         self.input_shape = input_shape
 

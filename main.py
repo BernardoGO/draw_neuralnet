@@ -16,8 +16,8 @@ def new():
     colors = []
 
     fig, ax = plt.subplots()
-    from keras_layers import Conv2D
-    from keras_model import Sequencial
+    from frameworks.keras.layers import Conv2D
+    from frameworks.keras.model import Sequencial
     import core.layer
     model = Sequencial()
     model.add(Conv2D(32, (1, 1), input_shape=(500,500,3), trainable=False))
