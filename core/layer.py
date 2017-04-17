@@ -35,7 +35,7 @@ def add_layer(patches, colors, size=24, num=5,
               position = 0, titleText = None, mappingText = None
               ):
 
-    size = (size/keras_layers.max_kernel_size_x)*get_effective_area()
+    size = (size/frameworks.keras.layers.max_kernel_size_x)*get_effective_area()
     loc_diff = [size/15,-1*size/15]
 
 
