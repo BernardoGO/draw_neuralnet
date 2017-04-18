@@ -1,21 +1,15 @@
 
 import os
 import numpy as np
-import matplotlib.pyplot as plt
-plt.rcdefaults()
-from matplotlib.lines import Line2D
-from matplotlib.patches import Rectangle
-from matplotlib.collections import PatchCollection
-import core.layer
 
+import core.layer
+import core.plot
 
 
 
 def new():
-    patches = []
-    colors = []
 
-    fig, ax = plt.subplots()
+
     from frameworks.keras.layers import Conv2D
     from frameworks.keras.model import Sequencial
     import core.layer
