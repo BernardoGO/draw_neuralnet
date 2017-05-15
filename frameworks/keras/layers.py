@@ -82,7 +82,7 @@ class MaxPooling2D():
         self.filters = input_shape[2]
 
     def getOutputShape(self):
-        return (self.input_shape[0]/2,self.input_shape[1]/2,self.filters)
+        return (self.input_shape[0]//2,self.input_shape[1]//2,self.filters)
 
     def getSize(self):
         return self.pool_size[0]

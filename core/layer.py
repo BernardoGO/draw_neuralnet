@@ -26,48 +26,11 @@ class layer():
         self.size_y = size_y
         self.mappingText = ""
         self.titleText = ""
+        self.mappingMiddleY = 0
 
 
 #def get_effective_area():
 #    return layer_width - layer_margin
-
-def add_mapping(patches, colors, index, ax, start_ratio = [0.2,0.2], patch_size=2):
-
-    start_loc = [layers[index].visible_left+ (layers[index].size_x*start_ratio[0]),layers[index].visible_bottom + (layers[index].size_y*start_ratio[1])]
-
-    end_loc = [layers[index+1].visible_left+ (layers[index+1].size_x*start_ratio[0]),layers[index+1].visible_bottom + (layers[index+1].size_y*start_ratio[1])]
-
-
-    patches.append(Rectangle(start_loc, patch_size, patch_size))
-    colors.append(core.colors.Dark)
-
-    ax.add_line(Line2D([start_loc[0], end_loc[0]],
-                          [start_loc[1], end_loc[1]*0.3]))
-    ax.add_line(Line2D([start_loc[0] + patch_size, end_loc[0]],
-                          [start_loc[1], end_loc[1]*0.3]))
-    ax.add_line(Line2D([start_loc[0], end_loc[0]],
-                          [start_loc[1] + patch_size, end_loc[1]*0.3]))
-    ax.add_line(Line2D([start_loc[0] + patch_size, end_loc[0]],
-                          [start_loc[1] + patch_size, end_loc[1]*0.3]))
-
-def label(index, plt, text = None, top= False, xy_off=[0, 4]):
-    xy_off=[0, 4]
-
-    visible_y = 0
-    if top == False:
-        pos_y = layers[index].visible_bottom - xy_off[1]
-        pos_x = layers[index].visible_left + xy_off[0]+ ((layers[index+1].visible_left - layers[index].visible_left) //2)
-        if text == None:
-            text = layers[index].mappingText
-    else:
-        pos_y = layers[index].actual_top + xy_off[1]
-        pos_x = layers[index].actual_left + xy_off[0]
-        if text == None:
-
-            text = layers[index].titleText
-
-    plt.text(pos_x, pos_y, text, family='sans-serif', size=8)
-
 
 def add_layer(patches, colors, size=24, num=5,
               position = 0, titleText = None, mappingText = None
@@ -93,7 +56,9 @@ def add_layer(patches, colors, size=24, num=5,
     post = loc_start + num * ne_loc
 
     left = post[0]
+
     bottom = post[1]
+    print (["bottom", bottom])
     top = bottom+size
     right = left + size
     objlay = layer(top, bottom, left, right,size,size)
@@ -115,3 +80,44 @@ def add_layer(patches, colors, size=24, num=5,
     objlay.titleText = titleText
 
     layers.append(objlay)
+
+def add_mapping(patches, colors, index, ax, start_ratio = [0.2,0.2], patch_size=2):
+
+    start_loc = [layers[index].visible_left+ (layers[index].size_x*start_ratio[0]),layers[index].visible_bottom + (layers[index].size_y*start_ratio[1])]
+
+    end_loc = [layers[index+1].visible_left+ (layers[index+1].size_x*start_ratio[0]),layers[index+1].visible_bottom + (layers[index+1].size_y*start_ratio[1])]
+
+
+    patches.append(Rectangle(start_loc, patch_size, patch_size))
+    colors.append(core.colors.Dark)
+
+    ratio = layers[index+1].size_y*0.7
+
+    #layers[index].mappingMiddleY =
+
+    ax.add_line(Line2D([start_loc[0], end_loc[0]],
+                          [start_loc[1], end_loc[1]+ratio]))
+    ax.add_line(Line2D([start_loc[0] + patch_size, end_loc[0]],
+                          [start_loc[1], end_loc[1]+ratio]))
+    ax.add_line(Line2D([start_loc[0], end_loc[0]],
+                          [start_loc[1] + patch_size, end_loc[1]+ratio]))
+    ax.add_line(Line2D([start_loc[0] + patch_size, end_loc[0]],
+                          [start_loc[1] + patch_size, end_loc[1]+ratio]))
+
+def label(index, plt, text = None, top= False, xy_off=[0, 4]):
+    xy_off=[0, 4]
+
+    visible_y = 0
+    if top == False:
+        pos_y = layers[index].visible_bottom + xy_off[0]+ ((layers[index+1].visible_bottom - layers[index].visible_bottom) //2)#layers[index].visible_bottom - xy_off[1]
+        pos_x = layers[index].visible_left + xy_off[0]+ ((layers[index+1].visible_left - layers[index].visible_left) //2)
+        if text == None:
+            text = layers[index].mappingText
+    else:
+        pos_y = layers[index].actual_top + xy_off[1]
+        pos_x = layers[index].actual_left + xy_off[0]
+        if text == None:
+
+            text = layers[index].titleText
+
+    plt.text(pos_x, pos_y, text, family='sans-serif', size=8)
