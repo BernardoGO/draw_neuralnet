@@ -28,8 +28,8 @@ class layer():
         self.titleText = ""
 
 
-def get_effective_area():
-    return layer_width - layer_margin
+#def get_effective_area():
+#    return layer_width - layer_margin
 
 def add_mapping(patches, colors, index, ax, start_ratio = [0.2,0.2], patch_size=2):
 
@@ -73,16 +73,22 @@ def add_layer(patches, colors, size=24, num=5,
               position = 0, titleText = None, mappingText = None
               ):
 
-    size = (size/frameworks.keras.layers.max_kernel_size_x)*get_effective_area()
+    size = (size/frameworks.keras.layers.max_kernel_size_x)*layer_width
     ne_loc = [size/15,-1*size/15]
 
 
-    top_left = [position*layer_width, position]
+    #top_left = [position*layer_width, position]
+    pos_left = 0
+    if len(layers) > 0:
+        pos_left = layers[-1].visible_right+10
+    top_left = [pos_left, position]
 
     top_left = np.array(top_left)
     ne_loc = np.array(ne_loc)
     tp = np.array([0, size])
     loc_start = top_left - tp
+
+    print([loc_start, num, ne_loc])
 
     post = loc_start + num * ne_loc
 

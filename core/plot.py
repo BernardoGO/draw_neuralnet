@@ -26,7 +26,7 @@ def show(model):
     core.plot.plt.tight_layout()
     core.plot.plt.axis('equal')
     #plt.ylim([0,80])
-    core.plot.plt.xlim([0,model.getCount() * core.layer.get_effective_area()])
+    #core.plot.plt.xlim([0,model.layers[-1].visible_right+10])
     core.plot.plt.axis('off')
     core.plot.plt.show()
 
@@ -46,7 +46,7 @@ def gen(model):
 
 
 
-    
+
 
     for ind in range(len(core.layer.layers)-1):
         #print([len(core.layer.positions), ind])

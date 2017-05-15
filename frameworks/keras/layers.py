@@ -50,8 +50,11 @@ class Conv2D():
         self.titleText = "Feature\nmaps"
         self.mappingText = "2D Convolution"
 
+    def setInput_shape(self, input_shape):
+        self.input_shape = input_shape
+
     def getOutputShape(self):
-        return (self.input_shape[0]-2,self.input_shape[1]-2,self.input_shape[2]-2)
+        return (self.input_shape[0]-2,self.input_shape[1]-2,self.filters)
 
     def getSize(self):
         return self.kernel_size[0]
@@ -74,8 +77,12 @@ class MaxPooling2D():
         self.mappingText = "2D Max-Pooling"
         self.filters = input_shape[2]
 
+    def setInput_shape(self, input_shape):
+        self.input_shape = input_shape
+        self.filters = input_shape[2]
+
     def getOutputShape(self):
-        return (self.input_shape[0]-2,self.input_shape[1]-2,self.input_shape[2]-2)
+        return (self.input_shape[0]/2,self.input_shape[1]/2,self.filters)
 
     def getSize(self):
         return self.pool_size[0]
