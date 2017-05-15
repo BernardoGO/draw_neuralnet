@@ -18,8 +18,6 @@ def initPlot():
 
 def show(model):
     core.plot.colors += [0, 1]
-    print(["P", len(patches), len(colors)])
-    #print(patches)
     collection = PatchCollection(patches, cmap=core.plot.plt.cm.gray)
     collection.set_array(np.array(colors))
     core.plot.ax.add_collection(collection)

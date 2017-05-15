@@ -8,7 +8,7 @@ import core.colors
 
 layer_width = 40
 layer_margin = 10
-
+ 
 positions = 0
 
 layers = []
@@ -71,7 +71,6 @@ def add_layer(patches, colors, size=24, num=5,
     objlay.titleText = titleText
 
     layers.append(objlay)
-    #positions.append([loc_start + ind * loc_diff,size,size])
 
 
 def add_mapping(patches, colors, start_ratio, patch_size, index, ax):
@@ -80,8 +79,6 @@ def add_mapping(patches, colors, start_ratio, patch_size, index, ax):
 
     end_loc = [layers[index+1].visible_left+ (layers[index+1].size_x*start_ratio[0]),layers[index+1].visible_bottom + (layers[index+1].size_y*start_ratio[1])]
 
-    print(["S",start_loc])
-    print(["E",end_loc])
 
     patches.append(Rectangle(start_loc, patch_size, patch_size))
     colors.append(core.colors.Dark)
@@ -97,7 +94,7 @@ def add_mapping(patches, colors, start_ratio, patch_size, index, ax):
 
 def label(index, plt, text = None, top= False, xy_off=[0, 4]):
     xy_off=[0, 4]
-    print("xy", xy_off)
+
     visible_y = 0
     if top == False:
         pos_y = layers[index].visible_bottom - xy_off[1]
@@ -108,7 +105,7 @@ def label(index, plt, text = None, top= False, xy_off=[0, 4]):
         pos_y = layers[index].actual_top + xy_off[1]
         pos_x = layers[index].actual_left + xy_off[0]
         if text == None:
-            print(["title", layers[index].titleText])
+
             text = layers[index].titleText
 
     plt.text(pos_x, pos_y, text, family='sans-serif', size=8)
