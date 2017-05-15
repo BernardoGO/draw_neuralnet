@@ -8,7 +8,7 @@ import core.colors
 
 layer_width = 40
 layer_margin = 10
- 
+
 positions = 0
 
 layers = []
@@ -31,49 +31,7 @@ class layer():
 def get_effective_area():
     return layer_width - layer_margin
 
-def add_layer(patches, colors, size=24, num=5,
-              position = 0, titleText = None, mappingText = None
-              ):
-
-    size = (size/frameworks.keras.layers.max_kernel_size_x)*get_effective_area()
-    loc_diff = [size/15,-1*size/15]
-
-
-    top_left = [position*layer_width, position]
-
-    top_left = np.array(top_left)
-    loc_diff = np.array(loc_diff)
-    tp = np.array([0, size])
-    loc_start = top_left - tp
-
-    post = loc_start + num * loc_diff
-
-    left = post[0]
-    bottom = post[1]
-    top = bottom+size
-    right = left + size
-    objlay = layer(top, bottom, left, right,size,size)
-
-    for ind in range(num):
-        pos = loc_start + ind * loc_diff
-        patches.append(Rectangle(pos, size, size))
-        if ind % 2:
-            colors.append(core.colors.Medium)
-        else:
-            colors.append(core.colors.Light)
-        if pos[0] < objlay.actual_left:
-            objlay.actual_left = pos[0]
-        if pos[1] > objlay.actual_bottom:
-            objlay.actual_bottom = pos[1]
-
-    objlay.actual_top = objlay.actual_bottom+size
-    objlay.mappingText = mappingText
-    objlay.titleText = titleText
-
-    layers.append(objlay)
-
-
-def add_mapping(patches, colors, start_ratio, patch_size, index, ax):
+def add_mapping(patches, colors, index, ax, start_ratio = [0.2,0.2], patch_size=2):
 
     start_loc = [layers[index].visible_left+ (layers[index].size_x*start_ratio[0]),layers[index].visible_bottom + (layers[index].size_y*start_ratio[1])]
 
@@ -109,3 +67,45 @@ def label(index, plt, text = None, top= False, xy_off=[0, 4]):
             text = layers[index].titleText
 
     plt.text(pos_x, pos_y, text, family='sans-serif', size=8)
+
+
+def add_layer(patches, colors, size=24, num=5,
+              position = 0, titleText = None, mappingText = None
+              ):
+
+    size = (size/frameworks.keras.layers.max_kernel_size_x)*get_effective_area()
+    ne_loc = [size/15,-1*size/15]
+
+
+    top_left = [position*layer_width, position]
+
+    top_left = np.array(top_left)
+    ne_loc = np.array(ne_loc)
+    tp = np.array([0, size])
+    loc_start = top_left - tp
+
+    post = loc_start + num * ne_loc
+
+    left = post[0]
+    bottom = post[1]
+    top = bottom+size
+    right = left + size
+    objlay = layer(top, bottom, left, right,size,size)
+
+    for ind in range(num):
+        pos = loc_start + ind * ne_loc
+        patches.append(Rectangle(pos, size, size))
+        if ind % 2:
+            colors.append(core.colors.Medium)
+        else:
+            colors.append(core.colors.Light)
+        if pos[0] < objlay.actual_left:
+            objlay.actual_left = pos[0]
+        if pos[1] > objlay.actual_bottom:
+            objlay.actual_bottom = pos[1]
+
+    objlay.actual_top = objlay.actual_bottom+size
+    objlay.mappingText = mappingText
+    objlay.titleText = titleText
+
+    layers.append(objlay)

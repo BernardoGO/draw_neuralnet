@@ -45,13 +45,11 @@ def gen(model):
 
 
 
-    start_ratio_list = [[0.2, 0.1], [0.2, 0.3], [0.4, 0.5], [0.4, 0.8]]
-    patch_size_list = [2, 3, 5, 2]
-    ind_bgn_list = range(len(patch_size_list))
+
+    
 
     for ind in range(len(core.layer.layers)-1):
         #print([len(core.layer.positions), ind])
-        core.layer.add_mapping(core.plot.patches, core.plot.colors, start_ratio_list[ind],
-                    patch_size_list[ind], ind, core.plot.ax
+        core.layer.add_mapping(core.plot.patches, core.plot.colors, ind, core.plot.ax
                     )
         core.layer.label(ind, core.plot.plt, top=False)
