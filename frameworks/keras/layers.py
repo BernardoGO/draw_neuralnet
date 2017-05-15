@@ -57,3 +57,27 @@ class Conv2D():
         return self.kernel_size[0]
     def getFilters(self):
         return self.filters
+
+class MaxPooling2D():
+    def __init__(self,
+                pool_size=(2, 2),
+                strides=None,
+                padding='valid',
+                input_shape = (None, None, None),
+                data_format=None):
+        self.input_shape = input_shape
+        self.pool_size = pool_size
+        self.strides = strides
+        self.padding = padding
+        self.data_format = data_format
+        self.titleText = "Feature\nmaps"
+        self.mappingText = "2D Max-Pooling"
+        self.filters = input_shape[2]
+
+    def getOutputShape(self):
+        return (self.input_shape[0]-2,self.input_shape[1]-2,self.input_shape[2]-2)
+
+    def getSize(self):
+        return self.pool_size[0]
+    def getFilters(self):
+        return self.filters
