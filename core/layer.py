@@ -106,15 +106,17 @@ def add_mapping(patches, colors, index, ax, start_ratio = [0.2,0.2], patch_size=
     ax.add_line(Line2D([start_loc[0] + patch_size, end_loc[0]],
                           [start_loc[1] + patch_size, end_loc[1]+ratio]))
 
-def label(index, plt, text = None, top= False, xy_off=[0, 4]):
+def label(index, plt, ax, text = None, top= False, xy_off=[0, 4]):
     xy_off=[0, 4]
 
     visible_y = 0
     if top == False:
-        pos_y = layers[index].visible_bottom - xy_off[1] #layers[index].visible_bottom + xy_off[0]+ ((layers[index+1].visible_bottom - layers[index].visible_bottom) //2)
+        pos_y = min(layers[index].visible_bottom, layers[index+1].visible_bottom)- xy_off[1] #layers[index].visible_bottom + xy_off[0]+ ((layers[index+1].visible_bottom - layers[index].visible_bottom) //2)
         pos_x = layers[index].visible_left + xy_off[0]+ ((layers[index+1].visible_left - layers[index].visible_left) //2)
         if text == None:
             text = layers[index].mappingText
+        plt.text(pos_x, pos_y, text, family='sans-serif', size=8,horizontalalignment='left',
+         verticalalignment='top')
     else:
         pos_y = layers[index].actual_top + xy_off[1]
         pos_x = layers[index].actual_left + xy_off[0]
@@ -122,4 +124,5 @@ def label(index, plt, text = None, top= False, xy_off=[0, 4]):
 
             text = layers[index].titleText
 
-    plt.text(pos_x, pos_y, text, family='sans-serif', size=8)
+        plt.text(pos_x, pos_y, text, family='sans-serif', size=8,horizontalalignment='left',
+         verticalalignment='bottom')

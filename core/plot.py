@@ -41,7 +41,7 @@ def gen(model):
                   mappingText = model.layers[ind].mappingText + '\n{}x{} kernel'.format(
                           model.layers[ind].getSize(), model.layers[ind].getSize())
                   )
-        core.layer.label(ind, core.plot.plt, top=True)
+        core.layer.label(ind, core.plot.plt, core.plot.ax, top=True)
 
 
 
@@ -52,4 +52,4 @@ def gen(model):
         #print([len(core.layer.positions), ind])
         core.layer.add_mapping(core.plot.patches, core.plot.colors, ind, core.plot.ax
                     )
-        core.layer.label(ind, core.plot.plt, top=False)
+        core.layer.label(ind, core.plot.plt, core.plot.ax, top=False)
