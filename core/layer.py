@@ -82,13 +82,14 @@ def add_layer(patches, colors, size=24, num=5,
 
     layers.append(objlay)
 
-def add_mapping(patches, colors, index, ax, start_ratio = [0.2,0.2], patch_size=2):
+def add_mapping(patches, colors, index, ax, start_ratio = [0.2,0.2], patch_size=0.2):
 
     start_loc = [layers[index].visible_left+ (layers[index].size_x*start_ratio[0]),layers[index].visible_bottom + (layers[index].size_y*start_ratio[1])]
 
     end_loc = [layers[index+1].visible_left+ (layers[index+1].size_x*start_ratio[0]),layers[index+1].visible_bottom + (layers[index+1].size_y*start_ratio[1])]
 
 
+    patch_size = patch_size*layers[index].size_x
     patches.append(Rectangle(start_loc, patch_size, patch_size))
     colors.append(core.colors.Dark)
 
@@ -110,7 +111,7 @@ def label(index, plt, text = None, top= False, xy_off=[0, 4]):
 
     visible_y = 0
     if top == False:
-        pos_y = layers[index].visible_bottom + xy_off[0]+ ((layers[index+1].visible_bottom - layers[index].visible_bottom) //2)#layers[index].visible_bottom - xy_off[1]
+        pos_y = layers[index].visible_bottom - xy_off[1] #layers[index].visible_bottom + xy_off[0]+ ((layers[index+1].visible_bottom - layers[index].visible_bottom) //2)
         pos_x = layers[index].visible_left + xy_off[0]+ ((layers[index+1].visible_left - layers[index].visible_left) //2)
         if text == None:
             text = layers[index].mappingText
