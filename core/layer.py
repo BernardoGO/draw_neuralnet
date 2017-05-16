@@ -35,7 +35,8 @@ class layer():
 def add_layer(patches, colors, size=24, num=5,
               position = 0, titleText = None, mappingText = None
               ):
-
+    if num > 6:
+        num = 6
     size = (size/frameworks.keras.layers.max_kernel_size_x)*layer_width
     ne_loc = [size/15,-1*size/15]
 

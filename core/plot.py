@@ -33,11 +33,11 @@ def show(model):
 def gen(model):
     for ind in range(len(model.layers)):
 
-        core.layer.add_layer(core.plot.patches, core.plot.colors, size=model.layers[ind].getSize(),
+        core.layer.add_layer(core.plot.patches, core.plot.colors, size=model.layers[ind].getOutputShape()[0],
                   num=model.layers[ind].getFilters(),
                   position = model.layers[ind].position,
                   titleText = model.layers[ind].titleText+ '\n{}@{}x{}'.format(
-                      model.layers[ind].getFilters(),  model.layers[ind].input_shape[0], model.layers[ind].input_shape[1]),
+                      model.layers[ind].getFilters(),  model.layers[ind].getOutputShape()[0], model.layers[ind].getOutputShape()[1]),
                   mappingText = model.layers[ind].mappingText + '\n{}x{} kernel'.format(
                           model.layers[ind].getSize(), model.layers[ind].getSize())
                   )
