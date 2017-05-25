@@ -88,3 +88,26 @@ class MaxPooling2D():
         return self.pool_size[0]
     def getFilters(self):
         return self.filters
+
+
+class Dense():
+    def __init__(self, units,
+                 activation=None,
+                 use_bias=True,
+                 kernel_initializer='glorot_uniform',
+                 bias_initializer='zeros',
+                 kernel_regularizer=None,
+                 bias_regularizer=None,
+                 activity_regularizer=None,
+                 kernel_constraint=None,
+                 bias_constraint=None):
+         self.units = units
+         self.activation =activation
+         self.use_bias = use_bias
+         self.kernel_initializer =kernel_initializer
+         self.bias_initializer =bias_initializer
+         self.kernel_regularizer =kernel_regularizer
+         self.bias_regularizer =bias_regularizer
+         self.activity_regularizer =activity_regularizer
+         self.kernel_constraint =kernel_constraint
+         self.bias_constraint =bias_constraint
