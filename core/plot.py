@@ -32,12 +32,19 @@ def show(model):
 
 def gen(model):
     for ind in range(len(model.layers)):
+        formattedTitle = ""
+
+        if len(model.layers[ind].getOutputShape()) == 1:
+            formattedTitle = model.layers[ind].titleText+ '\n{}@{}'.format(
+                model.layers[ind].getFilters(),  model.layers[ind].getOutputShape()[0])
+        else:
+            formattedTitle = model.layers[ind].titleText+ '\n{}@{}x{}'.format(
+                model.layers[ind].getFilters(),  model.layers[ind].getOutputShape()[0], model.layers[ind].getOutputShape()[1])
 
         core.layer.add_layer(core.plot.patches, core.plot.colors, size=model.layers[ind].getOutputShape()[0],
                   num=model.layers[ind].getFilters(),
                   position = model.layers[ind].position,
-                  titleText = model.layers[ind].titleText+ '\n{}@{}x{}'.format(
-                      model.layers[ind].getFilters(),  model.layers[ind].getOutputShape()[0], model.layers[ind].getOutputShape()[1]),
+                  titleText = formattedTitle,
                   mappingText = model.layers[ind].mappingText + '\n{}x{} kernel'.format(
                           model.layers[ind].getSize(), model.layers[ind].getSize())
                   )

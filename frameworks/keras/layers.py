@@ -113,3 +113,19 @@ class Dense():
          self.activity_regularizer =activity_regularizer
          self.kernel_constraint =kernel_constraint
          self.bias_constraint =bias_constraint
+         self.input_shape = input_shape
+         self.titleText = "Fully\nConnected"
+         self.mappingText = "Dense"
+
+    def setInput_shape(self, input_shape):
+        self.input_shape = input_shape
+
+
+    def getOutputShape(self):
+        return ([self.units])
+
+    def getFilters(self):
+        return 1
+
+    def getSize(self):
+        return 1
